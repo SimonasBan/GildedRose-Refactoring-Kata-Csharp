@@ -13,7 +13,7 @@ namespace csharp
                 new Item {Name = "Basic item", SellIn = 3, Quality = 6 },
                 new Item {Name = "Aged Brie", SellIn = 2, Quality = 0},
                 new Item {Name = "Aged Brie", SellIn = 1, Quality = 46},
-                new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = -1, Quality = 80},
+                new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 5, Quality = 80},
                 new Item
                 {
                     Name = "Backstage passes to a TAFKAL80ETC concert",
@@ -46,7 +46,7 @@ namespace csharp
             Assert.AreEqual(47, Items[2].Quality);
             //---Sulfuras---
             Assert.AreEqual(80, Items[3].Quality);
-            Assert.AreEqual(-1, Items[3].SellIn);
+            Assert.AreEqual(5, Items[3].SellIn);
             //---BackstageHighSell---
             Assert.AreEqual(21, Items[4].Quality);
             //---BackstageMidSell---
@@ -66,7 +66,7 @@ namespace csharp
             Assert.AreEqual(49, Items[2].Quality);
             //---Sulfuras---
             Assert.AreEqual(80, Items[3].Quality);
-            Assert.AreEqual(-1, Items[3].SellIn);
+            Assert.AreEqual(5, Items[3].SellIn);
             //---BackstageHighSell---
             Assert.AreEqual(22, Items[4].Quality);
             //---BackstageMidSell---

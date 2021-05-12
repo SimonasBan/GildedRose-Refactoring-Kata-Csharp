@@ -13,75 +13,109 @@ namespace csharp
         /*This method can be changed*/
         public void UpdateQuality()
         {
-            for (var i = 0; i < Items.Count; i++)
+            foreach (var item in Items)
             {
-                if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+                /*WHOLE IF - takes care of Quality
+                 * -------                 * 
+                 * Items: basic, Sulfurus*/
+                if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
-                    if (Items[i].Quality > 0)
-                    {
-                        if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
+                    if (item.Quality > 0)
+                    {   
+                        //If basic item
+                        if (item.Name != "Sulfuras, Hand of Ragnaros")
                         {
-                            Items[i].Quality = Items[i].Quality - 1;
+                            item.Quality = item.Quality - 1;
                         }
                     }
+                    /*else{}
+                     Cover edge case of item with quality<0*/
                 }
+                /*Items: Brie, Concert*/
                 else
                 {
-                    if (Items[i].Quality < 50)
+                    if (item.Quality < 50)
                     {
-                        Items[i].Quality = Items[i].Quality + 1;
+                        //Always increases Brie and concert at least by 1
+                        item.Quality = item.Quality + 1;
 
-                        if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
+                        if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
                         {
-                            if (Items[i].SellIn < 11)
+
+                            //< 11 is +2 (but 1 is already plussed by default)
+                            if (item.SellIn < 11)
                             {
-                                if (Items[i].Quality < 50)
+                                //This is already checked I thik
+                                if (item.Quality < 50)
                                 {
-                                    Items[i].Quality = Items[i].Quality + 1;
+                                    item.Quality = item.Quality + 1;
                                 }
                             }
 
-                            if (Items[i].SellIn < 6)
+                            /*< 6 is +3 (but 1 is already plussed
+                             * by default and another 1 because it was < 11)
+                             * --------
+                             * But this should be in an else of <11
+                             */
+                            if (item.SellIn < 6)
                             {
-                                if (Items[i].Quality < 50)
+                                //This is already checked I thik
+                                if (item.Quality < 50)
                                 {
-                                    Items[i].Quality = Items[i].Quality + 1;
+                                    item.Quality = item.Quality + 1;
                                 }
                             }
                         }
                     }
+                    /*else{}
+                     Cover edge case of item with quality>50*/
                 }
 
-                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
+                //Every item get older except Sulfuras.
+                if (item.Name != "Sulfuras, Hand of Ragnaros")
                 {
-                    //Should sellIn go <0?
-                    Items[i].SellIn = Items[i].SellIn - 1;
+                    item.SellIn = item.SellIn - 1;
                 }
 
-                if (Items[i].SellIn < 0)
+
+                /*WHOLE IF - takes care of age
+                 * (decreases quality on edge cases caused by age)
+                 Maybe could be put as an else*/
+                if (item.SellIn < 0)
                 {
-                    if (Items[i].Name != "Aged Brie")
+                    //Basic, concert, sulfurues items
+                    if (item.Name != "Aged Brie")
                     {
-                        if (Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+                        //Basic, sulfurus items
+                        if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
                         {
-                            if (Items[i].Quality > 0)
-                            {
-                                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
+                            //This should be put earlier and not repeated
+                            if (item.Quality > 0)
+                            {   
+                                /*Basic items.
+                                Check it earlier together with concert?*/
+                                if (item.Name != "Sulfuras, Hand of Ragnaros")
                                 {
-                                    Items[i].Quality = Items[i].Quality - 1;
+                                    /*Basic items were already decreased
+                                     * but with age <0 their Quality decreases by 2
+                                    */
+                                    item.Quality = item.Quality - 1;
                                 }
                             }
                         }
+                        //Concert items. Quality is zero when age is <0
                         else
                         {
-                            Items[i].Quality = Items[i].Quality - Items[i].Quality;
+                            //Change to = 0
+                            item.Quality = item.Quality - item.Quality;
                         }
                     }
+                    //Brie items. Get better no matter the age
                     else
                     {
-                        if (Items[i].Quality < 50)
+                        if (item.Quality < 50)
                         {
-                            Items[i].Quality = Items[i].Quality + 1;
+                            item.Quality = item.Quality + 1;
                         }
                     }
                 }

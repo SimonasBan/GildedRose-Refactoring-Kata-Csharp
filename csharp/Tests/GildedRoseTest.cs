@@ -6,6 +6,8 @@ namespace csharp
     [TestFixture]
     public class GildedRoseTest
     {
+        /*This test was based on
+         the original code*/
         [Test]
         public void foo()
         {

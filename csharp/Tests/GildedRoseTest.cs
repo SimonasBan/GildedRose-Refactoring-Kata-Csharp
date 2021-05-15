@@ -49,12 +49,12 @@ namespace csharp
             ////---Sulfuras---
             //Assert.AreEqual(80, Items[3].Quality);
             //Assert.AreEqual(5, Items[3].SellIn);
-            ////---BackstageHighSell---
-            //Assert.AreEqual(21, Items[4].Quality);
-            ////---BackstageMidSell---
-            //Assert.AreEqual(45, Items[5].Quality);
-            ////---BackstageLowSell---
-            //Assert.AreEqual(33, Items[6].Quality);
+            //---BackstageHighSell---
+            Assert.AreEqual(21, Items[4].Quality);
+            //---BackstageMidSell---
+            Assert.AreEqual(45, Items[5].Quality);
+            //---BackstageLowSell---
+            Assert.AreEqual(33, Items[6].Quality);
 
 
 
@@ -69,12 +69,12 @@ namespace csharp
             ////---Sulfuras---
             //Assert.AreEqual(80, Items[3].Quality);
             //Assert.AreEqual(5, Items[3].SellIn);
-            ////---BackstageHighSell---
-            //Assert.AreEqual(22, Items[4].Quality);
-            ////---BackstageMidSell---
-            //Assert.AreEqual(48, Items[5].Quality);
-            ////---BackstageLowSell---
-            //Assert.AreEqual(36, Items[6].Quality);
+            //---BackstageHighSell---
+            Assert.AreEqual(22, Items[4].Quality);
+            //---BackstageMidSell---
+            Assert.AreEqual(48, Items[5].Quality);
+            //---BackstageLowSell---
+            Assert.AreEqual(36, Items[6].Quality);
 
 
 
@@ -88,12 +88,12 @@ namespace csharp
             Assert.AreEqual(4, Items[1].Quality);
             //---brieHighQ---
             Assert.AreEqual(50, Items[2].Quality);
-            ////---BackstageHighSell---
-            //Assert.AreEqual(24, Items[4].Quality);
-            ////---BackstageMidSell---
-            //Assert.AreEqual(50, Items[5].Quality);
-            ////---BackstageLowSell---
-            //Assert.AreEqual(0, Items[6].Quality);
+            //---BackstageHighSell---
+            Assert.AreEqual(24, Items[4].Quality);
+            //---BackstageMidSell---
+            Assert.AreEqual(50, Items[5].Quality);
+            //---BackstageLowSell---
+            Assert.AreEqual(0, Items[6].Quality);
 
 
 
@@ -104,8 +104,8 @@ namespace csharp
             Assert.AreEqual(1, Items[0].Quality);
             //---brieLowQ---
             Assert.AreEqual(6, Items[1].Quality);
-            ////---BackstageHighSell---
-            //Assert.AreEqual(26, Items[4].Quality);
+            //---BackstageHighSell---
+            Assert.AreEqual(26, Items[4].Quality);
 
 
 

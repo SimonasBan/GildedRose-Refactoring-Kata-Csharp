@@ -10,11 +10,12 @@ namespace csharp
     [TestFixture]
     public class AgedBrieTest
     {
+        public string ItemName = "Aged Brie";
         [Test]
         public void AgedBrie_NormalCaseBehaviour_ShouldIncreaseQualityByOne()
         {
             IList<Item> Items = new List<Item>{
-                new Item {Name = "Aged Brie", SellIn = 15, Quality = 30 },
+                new Item {Name = ItemName, SellIn = 15, Quality = 30 },
             };
             var app = new GildedRose(Items);
 
@@ -31,9 +32,9 @@ namespace csharp
         public void AgedBrie_HighQualityLowSellIn_QualityShouldNotGetMoreThanFifty()
         {
             IList<Item> Items = new List<Item>{
-                new Item {Name = "Aged Brie", SellIn = -2, Quality = 49 },
-                new Item {Name = "Aged Brie", SellIn = -2, Quality = 48 },
-                new Item {Name = "Aged Brie", SellIn = -2, Quality = 47 }
+                new Item {Name = ItemName, SellIn = -2, Quality = 49 },
+                new Item {Name = ItemName, SellIn = -2, Quality = 48 },
+                new Item {Name = ItemName, SellIn = -2, Quality = 47 }
             };
             var app = new GildedRose(Items);
 
@@ -52,7 +53,7 @@ namespace csharp
         public void AgedBrie_HighQuality_QualityShouldNotGetMoreThanFifty()
         {
             IList<Item> Items = new List<Item>{
-                new Item {Name = "Aged Brie", SellIn = 5, Quality = 49 },
+                new Item {Name = ItemName, SellIn = 5, Quality = 49 },
             };
             var app = new GildedRose(Items);
 
@@ -67,7 +68,7 @@ namespace csharp
         public void AgedBrie_LowSellIn_ShouldIncreaseQualityByTwo ()
         {
             IList<Item> Items = new List<Item>{
-                new Item {Name = "Aged Brie", SellIn = 2, Quality = 10 },
+                new Item {Name = ItemName, SellIn = 2, Quality = 10 },
             };
             var app = new GildedRose(Items);
 
@@ -88,7 +89,7 @@ namespace csharp
         public void AgedBrie_WhenQualityIsNegative_ShouldThrowArgumentOutOfRange()
         {
             IList<Item> Items = new List<Item>{
-                new Item {Name = "Aged Brie", SellIn = 15, Quality = -1 },
+                new Item {Name = ItemName, SellIn = 15, Quality = -1 },
             };
             var app = new GildedRose(Items);
 
@@ -106,7 +107,7 @@ namespace csharp
         public void AgedBrie_WhenQualityIsMoreThanFifty_ShouldThrowArgumentOutOfRange()
         {
             IList<Item> Items = new List<Item>{
-                new Item {Name = "Aged Brie", SellIn = 15, Quality = 51 },
+                new Item {Name = ItemName, SellIn = 15, Quality = 51 },
             };
             var app = new GildedRose(Items);
 

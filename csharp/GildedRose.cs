@@ -13,8 +13,12 @@ namespace csharp
         const int LowestValidSellInDefault = 0;
 
         //Specific validation values
-        const int HighestValidQualityBrieLowSellIn = HighestValidQualityDefault - 1;
-        const int LowestValidQualityBasicItemLowSellIn = LowestValidSellInDefault + 1;
+        const int Brie_HighestValidQualityLowSellIn = HighestValidQualityDefault - 1;
+        const int BasicItem_LowestValidQualityLowSellIn = LowestValidSellInDefault + 1;
+        const int Concert_FirstQualityChangeSellIn = 10;
+        const int Concert_FirstQualityChange_HighestValidQuality = HighestValidQualityDefault - 1;
+        const int Concert_SecondQualityChangeSellIn = 5;
+        const int Concert_SecondQualityChange_HighestValidQuality = HighestValidQualityDefault - 2;
 
         //Validation messages
         const string QualityLessThanZeroMessage = "Quality can not be less than 0";
@@ -66,6 +70,9 @@ namespace csharp
                     {
                         switch (item.Name)
                         {
+                            case "Backstage passes to a TAFKAL80ETC concert":
+                                HandleConcertChanges(item);
+                                break;
                             case "Aged Brie":
                                 HandleAgedBrieChanges(item);
                                 break;
@@ -83,15 +90,41 @@ namespace csharp
             }
         }
 
-        public void HandleAgedBrieChanges(Item item)
+        public void HandleConcertChanges(Item item)
         {
-            //SellIn <=0 and Quality < 49 so it would not get >50 if quality increased by 2
-            if (item.SellIn <= LowestValidSellInDefault && item.Quality < HighestValidQualityBrieLowSellIn)
+            //SellIn < 0
+            if (item.SellIn <= LowestValidSellInDefault)
+            {
+                item.Quality =  0;
+            }
+            //SellIn > 0 && <=5 && Quality < 48 (Because Quality can not be >50)
+            else if (item.SellIn <= Concert_SecondQualityChangeSellIn && item.Quality < Concert_SecondQualityChange_HighestValidQuality)
+            {
+                item.Quality += 3;
+            }
+            //SellIn > 5 && SellIn <= 10 && Quality < 49 (Because Quality can not be >50)
+            else if (item.SellIn <= Concert_FirstQualityChangeSellIn && item.Quality < Concert_FirstQualityChange_HighestValidQuality)
             {
                 item.Quality += 2;
             }
-            //SellIn >0
-            else if(item.Quality < HighestValidQualityDefault)
+            //SellIn > 10 && Quality <50 (because Quality can not be >50)
+            else if (item.Quality < HighestValidQualityDefault)
+            {
+                item.Quality += 1;
+            }
+
+            item.SellIn -= 1;
+        }
+
+        public void HandleAgedBrieChanges(Item item)
+        {
+            //SellIn <=0 and Quality < 49 (Because Quality can not be >50)
+            if (item.SellIn <= LowestValidSellInDefault && item.Quality < Brie_HighestValidQualityLowSellIn)
+            {
+                item.Quality += 2;
+            }
+            //SellIn >0 && Quality <50 (because Quality can not be >50)
+            else if (item.Quality < HighestValidQualityDefault)
             {
                 item.Quality += 1;
             }
@@ -106,7 +139,7 @@ namespace csharp
                 if (item.SellIn <= LowestValidSellInDefault)
                 {
                     //Quality > 1 ? (-2) : 0
-                    item.Quality = (item.Quality > LowestValidQualityBasicItemLowSellIn) ? (item.Quality - 2) : 0;
+                    item.Quality = (item.Quality > BasicItem_LowestValidQualityLowSellIn) ? (item.Quality - 2) : 0;
                 }
                 else
                 {

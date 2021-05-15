@@ -64,6 +64,7 @@
     <Compile Include="Tests\AgedBrieTest.cs" />
     <Compile Include="Tests\BasicItemTest.cs" />
     <Compile Include="GildedRose.cs" />
+    <Compile Include="Tests\ConcertTest.cs" />
     <Compile Include="Tests\GildedRoseTest.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Program.cs" />

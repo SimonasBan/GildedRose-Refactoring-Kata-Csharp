@@ -10,11 +10,12 @@ namespace csharp
     [TestFixture]
     public class BasicItemTest
     {
+        public string ItemName = "Basic item";
         [Test]
         public void BasicItem_NormalCaseBehaviour()
         {
             IList<Item> Items = new List<Item>{
-                new Item {Name = "Basic item", SellIn = 15, Quality = 50 },
+                new Item {Name = ItemName, SellIn = 15, Quality = 50 },
             };
             var app = new GildedRose(Items);
 
@@ -31,7 +32,7 @@ namespace csharp
         public void BasicItem_WhenQualityIsNegative_ShouldThrowArgumentOutOfRange()
         {
             IList<Item> Items = new List<Item>{
-                new Item {Name = "Basic item", SellIn = 15, Quality = -1 },
+                new Item {Name = ItemName, SellIn = 15, Quality = -1 },
             };
             var app = new GildedRose(Items);
 
@@ -49,7 +50,7 @@ namespace csharp
         public void BasicItem_WhenQualityIsMoreThanFifty_ShouldThrowArgumentOutOfRange()
         {
             IList<Item> Items = new List<Item>{
-                new Item {Name = "Basic item", SellIn = 15, Quality = 51 },
+                new Item {Name = ItemName, SellIn = 15, Quality = 51 },
             };
             var app = new GildedRose(Items);
 
@@ -68,8 +69,8 @@ namespace csharp
         public void BasicItem_LowSellInLowQuality_ShouldStopDecreasingQuality()
         {
             IList<Item> Items = new List<Item>{
-                new Item {Name = "Basic item", SellIn = 1, Quality = 4 },
-                new Item {Name = "Basic item", SellIn = 1, Quality = 3 },
+                new Item {Name = ItemName, SellIn = 1, Quality = 4 },
+                new Item {Name = ItemName, SellIn = 1, Quality = 3 },
             };
             var app = new GildedRose(Items);
 
@@ -97,7 +98,7 @@ namespace csharp
         public void BasicItem_LowQuality_ShouldStopDecreasingQuality()
         {
             IList<Item> Items = new List<Item>{
-                new Item {Name = "Basic item", SellIn = 10, Quality = 2 },
+                new Item {Name = ItemName, SellIn = 10, Quality = 2 },
             };
             var app = new GildedRose(Items);
 

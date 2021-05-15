@@ -61,9 +61,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicItemTest.cs" />
+    <Compile Include="Tests\BasicItemTest.cs" />
     <Compile Include="GildedRose.cs" />
-    <Compile Include="GildedRoseTest.cs" />
+    <Compile Include="Tests\GildedRoseTest.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

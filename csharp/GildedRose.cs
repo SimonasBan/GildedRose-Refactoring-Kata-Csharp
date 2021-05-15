@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace csharp
 {
     public class GildedRose
-    {
+    {        
         IList<Item> Items;
+       
         public GildedRose(IList<Item> Items)
         {
             this.Items = Items;
@@ -30,35 +32,37 @@ namespace csharp
              * items in the future.
              * --------
              * There was also an idea to
-             */
+                ad if (item.SellIn > 0) here and have
+                different switches for items that are old
+                and not since almost all of the items
+                act differently with age., nm
+                But this would decrease readability
+                as well as maintainability
+              */
 
 
+            //Validation values
+            const int LowestValidQualityDefault = 0;
+            const int HighestValidQualityDefault = 50;
 
-            /*TO DO's
-             1 Make an array of item names that have
-            exceptions for item quality boundaries and compare
-            it in the if.
-             */
+            const int LowestValidSellInDefault = 0;
+
+            //Validation messages
+            const string QualityLessThanZeroMessage = "Quality can not be less than 0";
+            const string QualityMoreThanFifty = "Quality can not be more than 50";
+            
 
             foreach (var item in Items)
             {
                 //The Quality of an item is never negative
-                if (item.Quality >= 0)
-                {
-                    /*There was also an idea to
-                     ad if (item.SellIn > 0) here and have
-                    different switches for items that are old
-                    and not since almost all of the items
-                    act differently with age.
-                    But this would decrease readability
-                    as well as maintainability*/
-
+                if (item.Quality >= LowestValidQualityDefault)
+                {              
 
                     //The Quality of an item is never more than 50
-                    if (item.Quality > 50 && item.Name != "Sulfuras, Hand of Ragnaros")
+                    if (item.Quality > HighestValidQualityDefault && item.Name != "Sulfuras, Hand of Ragnaros")
                     {
-                        //exception
-                    }                    
+                        throw new ArgumentOutOfRangeException("Quality", QualityMoreThanFifty);
+                    }
                     else
                     {
                         switch (item.Name)
@@ -67,7 +71,7 @@ namespace csharp
 
                             //Basic items
                             default:
-                                if (item.SellIn <= 0)
+                                if (item.SellIn <= LowestValidSellInDefault)
                                 {
                                     item.Quality = (item.Quality > 2) ? (item.Quality - 2) : 0;
                                 }
@@ -82,10 +86,12 @@ namespace csharp
                 }
                 else
                 {
-                    //TO DO throw exception
+                    throw new ArgumentOutOfRangeException("Quality", QualityLessThanZeroMessage);
                 }
 
 
+
+                //Old method
 
 
                 ///*WHOLE IF - takes care of Quality
@@ -94,7 +100,7 @@ namespace csharp
                 //if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
                 //{
                 //    if (item.Quality > 0)
-                //    {   
+                //    {
                 //        //If basic item
                 //        if (item.Name != "Sulfuras, Hand of Ragnaros")
                 //        {
@@ -164,7 +170,7 @@ namespace csharp
                 //        {
                 //            //This should be put earlier and not repeated
                 //            if (item.Quality > 0)
-                //            {   
+                //            {
                 //                /*Basic items.
                 //                Check it earlier together with concert?*/
                 //                if (item.Name != "Sulfuras, Hand of Ragnaros")

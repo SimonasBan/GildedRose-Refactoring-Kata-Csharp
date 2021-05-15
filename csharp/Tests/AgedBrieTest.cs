@@ -7,6 +7,7 @@ using NUnit.Framework;
 
 namespace csharp
 {
+    /*All tests pass with the old and new UpdareQuality methods*/
     [TestFixture]
     public class AgedBrieTest
     {

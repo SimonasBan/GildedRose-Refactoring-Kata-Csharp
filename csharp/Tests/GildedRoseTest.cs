@@ -6,7 +6,7 @@ namespace csharp
     [TestFixture]
     public class GildedRoseTest
     {
-        /*This test was made to work with
+        /*This test was based on
          the original code*/
         [Test]
         public void foo()
@@ -46,9 +46,9 @@ namespace csharp
             Assert.AreEqual(1, Items[1].Quality);
             //---brieHighQ---
             Assert.AreEqual(47, Items[2].Quality);
-            ////---Sulfuras---
-            //Assert.AreEqual(80, Items[3].Quality);
-            //Assert.AreEqual(5, Items[3].SellIn);
+            //---Sulfuras---
+            Assert.AreEqual(80, Items[3].Quality);
+            Assert.AreEqual(5, Items[3].SellIn);
             //---BackstageHighSell---
             Assert.AreEqual(21, Items[4].Quality);
             //---BackstageMidSell---
@@ -66,9 +66,9 @@ namespace csharp
             Assert.AreEqual(2, Items[1].Quality);
             //---brieHighQ---
             Assert.AreEqual(49, Items[2].Quality);
-            ////---Sulfuras---
-            //Assert.AreEqual(80, Items[3].Quality);
-            //Assert.AreEqual(5, Items[3].SellIn);
+            //---Sulfuras---
+            Assert.AreEqual(80, Items[3].Quality);
+            Assert.AreEqual(5, Items[3].SellIn);
             //---BackstageHighSell---
             Assert.AreEqual(22, Items[4].Quality);
             //---BackstageMidSell---

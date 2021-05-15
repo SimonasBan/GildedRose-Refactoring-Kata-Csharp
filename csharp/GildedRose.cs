@@ -15,6 +15,7 @@ namespace csharp
         //Specific validation values
         const int Brie_HighestValidQualityLowSellIn = HighestValidQualityDefault - 1;
         const int BasicItem_LowestValidQualityLowSellIn = LowestValidSellInDefault + 1;
+        const int Conjured_LowestValidQualityLowSellIn = 3;
         const int Concert_FirstQualityChangeSellIn = 10;
         const int Concert_FirstQualityChange_HighestValidQuality = HighestValidQualityDefault - 1;
         const int Concert_SecondQualityChangeSellIn = 5;
@@ -56,12 +57,13 @@ namespace csharp
         public void UpdateQuality()
         {
             foreach (var item in Items)
+
             {
                 //The Quality of an item is never negative
                 if (item.Quality >= LowestValidQualityDefault)
-                {              
+                {
 
-                    //The Quality of an item is never more than 50
+                    //The Quality of an item is never more than 50 unless it's sulfuras
                     if (item.Quality > HighestValidQualityDefault && item.Name != "Sulfuras, Hand of Ragnaros")
                     {
                         throw new ArgumentOutOfRangeException("Quality", QualityMoreThanFifty);
@@ -76,7 +78,11 @@ namespace csharp
                             case "Aged Brie":
                                 HandleAgedBrieChanges(item);
                                 break;
-                            //Basic items
+                            case "Sulfuras, Hand of Ragnaros":
+                                break;
+                            case "Conjured Mana Cake":
+                                HandleConjuredItemChanges(item);
+                                break;
                             default:
                                 HandleBasicItemChanges(item);
                                 break;
@@ -89,6 +95,8 @@ namespace csharp
                 }
             }
         }
+
+
 
         public void HandleConcertChanges(Item item)
         {
@@ -149,11 +157,37 @@ namespace csharp
             item.SellIn -= 1;
         }
 
+        public void HandleConjuredItemChanges(Item item)
+        {
+            if (item.Quality > 0)
+            {
+                if (item.Quality > 1)
+                {
+                    //SellIn < 0
+                    if (item.SellIn <= LowestValidSellInDefault)
+                    {
+                        //Quality > 2 ? (-4) : 0
+                        item.Quality = (item.Quality > Conjured_LowestValidQualityLowSellIn) ? (item.Quality - 4) : 0;
+                    }
+                    else
+                    {
+                        item.Quality -= 2;
+                    }
+                }
+                //Quality == 1
+                else
+                {
+                    item.Quality = 0;
+                }
+            }
+            item.SellIn -= 1;
+        }
 
 
-        ////Old solution
+
+        //////Old solution
         //public void UpdateQuality()
-        //{          
+        //{
 
 
         //    foreach (var item in Items)

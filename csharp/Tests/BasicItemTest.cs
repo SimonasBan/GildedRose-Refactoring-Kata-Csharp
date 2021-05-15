@@ -65,27 +65,49 @@ namespace csharp
 
 
         [Test]
-        public void BasicItem_LowSellIn_QualityStopsDecreasing()
+        public void BasicItem_LowSellInLowQuality_ShouldStopDecreasingQuality()
         {
             IList<Item> Items = new List<Item>{
                 new Item {Name = "Basic item", SellIn = 1, Quality = 4 },
+                new Item {Name = "Basic item", SellIn = 1, Quality = 3 },
             };
             var app = new GildedRose(Items);
 
             app.UpdateQuality();
             Assert.AreEqual(0, Items[0].SellIn);
             Assert.AreEqual(3, Items[0].Quality);
+            Assert.AreEqual(2, Items[1].Quality);
 
             app.UpdateQuality();
             Assert.AreEqual(-1, Items[0].SellIn);
             Assert.AreEqual(1, Items[0].Quality);
+            Assert.AreEqual(0, Items[1].Quality);
 
             app.UpdateQuality();
             Assert.AreEqual(-2, Items[0].SellIn);
             Assert.AreEqual(0, Items[0].Quality);
+            Assert.AreEqual(0, Items[1].Quality);
 
             app.UpdateQuality();
             Assert.AreEqual(-3, Items[0].SellIn);
+            Assert.AreEqual(0, Items[0].Quality);
+        }
+
+        [Test]
+        public void BasicItem_LowQuality_ShouldStopDecreasingQuality()
+        {
+            IList<Item> Items = new List<Item>{
+                new Item {Name = "Basic item", SellIn = 10, Quality = 2 },
+            };
+            var app = new GildedRose(Items);
+
+            app.UpdateQuality();
+            Assert.AreEqual(1, Items[0].Quality);
+
+            app.UpdateQuality();
+            Assert.AreEqual(0, Items[0].Quality);
+
+            app.UpdateQuality();
             Assert.AreEqual(0, Items[0].Quality);
         }
     }

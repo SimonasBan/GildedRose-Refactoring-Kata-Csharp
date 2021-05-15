@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tests\AgedBrieTest.cs" />
     <Compile Include="Tests\BasicItemTest.cs" />
     <Compile Include="GildedRose.cs" />
     <Compile Include="Tests\GildedRoseTest.cs" />

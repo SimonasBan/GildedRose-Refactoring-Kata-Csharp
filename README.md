@@ -2,18 +2,23 @@
 Gilded Rose Refactoring Kata solution for 'Telesoftas' internship.
 
 ## Changes made to the original code:
-•The original code has been refactored on a switch statement since
+• The original code has been refactored on a switch statement since
 the task asked to make the code readable
 and maintanable. This would make it easier to add new
 items in the future.
 
-•Every item has it's own Handling method, which also adds to the readability and maintainability.
+• Every item has it's own Handling method, which also adds to the readability and maintainability.
 
-•Recurring values put into constant values.
+• Recurring values put into constant values.
 ## New features:
 • Exception handling has been added for the items with Quality value that does not pass the requirements.
 
 • 'Conjured' item handling.
+
+## Testing:
+• Unit test files were made for every item type (except for Sulfuras since it's SellIn or Quality do not change and other tests cover it's behaviour by default) covering every type of edge case.
+
+• Tests pass with the refactored code and with the original unchanged code as well.
 
 ## Other ideas I've had
 • If I were able change Item class, I would have added itemType property to it and made switch based on itemType.
